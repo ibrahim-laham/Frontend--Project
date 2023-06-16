@@ -24,7 +24,7 @@ export default function FormComp() {
             onChange={inputHandeler}
           />
           <Form.Text className="text-muted">
-            check: iphone X, macbook pro...
+            Check: iphone X, macbook pro...
           </Form.Text>
         </Form.Group>
       </Form>
