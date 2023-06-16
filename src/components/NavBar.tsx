@@ -1,68 +1,132 @@
+import { useState } from "react";
+
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+
+import { Link } from "react-router-dom";
+
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import Stack from 'react-bootstrap/Stack';
+import Image from "react-bootstrap/Image";
+import Badge from "react-bootstrap/Badge";
+import ListGroup from "react-bootstrap/ListGroup";
+
+import { FaBars } from "react-icons/fa";
+
+import Logo from "../Assets/logo.png";
+import { Stack } from "react-bootstrap";
 
 export default function NavBar() {
+  const wishList = useSelector((state: RootState) => state.products.wishes);
+  const cart = useSelector((state: RootState) => state.cart.cart);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
       {[false].map((expand, index) => (
-        <Navbar key={index} bg="light" expand={expand} className="mb-3">
-          <Stack>
-            <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
-          </Stack>
-
-          <Container fluid>
-            <Nav.Link href="#features">Home</Nav.Link>
-            <Nav.Link href="#pricing">Products</Nav.Link>
-            <Nav.Link href="#pricing">Wishlist</Nav.Link>
-            <Nav.Link href="#pricing">Cart</Nav.Link>
-            <Nav.Link href="#pricing">Brand</Nav.Link>
-            <Nav.Link href="#pricing">About us</Nav.Link>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-            <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-${expand}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="end"
+        <Navbar
+          key={index}
+          bg="dark"
+          expand={expand}
+          className="mb-3 text-warning"
+          style={{ fontWeight: "700" }}
+        >
+          <Container fluid className="justify-content-md-center w-25">
+            <Link to="/">
+              <Navbar.Brand href="#">
+                <Image className="w-25" src={Logo} roundedCircle></Image>
+              </Navbar.Brand>
+            </Link>
+          </Container>
+          <Container fluid className="px-5">
+            <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
+              <Nav>Home</Nav>
+            </Link>
+            <Link
+              style={{ textDecoration: "none", color: "inherit" }}
+              to="/products"
             >
+              <Nav>Products</Nav>
+            </Link>
+            <Link
+              style={{ textDecoration: "none", color: "inherit" }}
+              to="/wishlist"
+            >
+              <Nav className="position-relative p-1">
+                Wishlist{" "}
+                <Badge
+                  bg="danger"
+                  className="position-absolute top-0 start-100 translate-middle"
+                >
+                  {wishList.length > 0 ? wishList.length : null}
+                </Badge>
+              </Nav>
+            </Link>
+            <Link
+              style={{ textDecoration: "none", color: "inherit" }}
+              to="/cart"
+            >
+              <Nav className="position-relative p-1">
+                Cart
+                <Badge
+                  bg="danger"
+                  className="position-absolute top-0 start-100 translate-middle"
+                >
+                  {cart.length > 0 ? cart.length : null}
+                </Badge>
+              </Nav>
+            </Link>
+            <Link
+              style={{ textDecoration: "none", color: "inherit" }}
+              to="/brand"
+            >
+              <Nav>Brand</Nav>
+            </Link>
+            <Link
+              style={{ textDecoration: "none", color: "inherit" }}
+              to="/aboutus"
+            >
+              <Nav>About us</Nav>
+            </Link>
+            <Button variant="warning" onClick={handleShow}>
+              <FaBars />
+            </Button>
+            <Offcanvas show={show} onHide={handleClose} placement={"end"}>
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  Offcanvas
+                  WishList
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Link</Nav.Link>
-                  <NavDropdown
-                    title="Dropdown"
-                    id={`offcanvasNavbarDropdown-expand-${expand}`}
-                  >
-                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">
-                      Another action
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
-                      Something else here
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
-                </Form>
+                <ListGroup>
+                  {wishList.map((item) => (
+                    <ListGroup.Item variant="info" className="my-1">
+                      <Stack direction="horizontal">
+                        <div
+                          className="w-25"
+                          style={{ overflow: "hidden", marginRight: "1vw" }}
+                        >
+                          <Image
+                            roundedCircle
+                            src={item.thumbnail}
+                            style={{ objectFit: "cover" }}
+                            className="w-100"
+                          />
+                        </div>
+                        <div className="w-50">{item.title}</div>
+                        <div className="w-25">Price: {item.price} </div>
+                      </Stack>
+                    </ListGroup.Item>
+                  ))}
+                </ListGroup>
               </Offcanvas.Body>
-            </Navbar.Offcanvas>
+            </Offcanvas>
           </Container>
         </Navbar>
       ))}
