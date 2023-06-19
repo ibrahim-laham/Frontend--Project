@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-
 import { getProductsData } from "../redux/thunk/products";
 import { AppDispatch, RootState } from "../redux/store";
 import { productsActions } from "../redux/slices/products";
-
-import ProductItem from "../components/ProductItem";
 
 import Row from "react-bootstrap/Row";
 import { Button } from "react-bootstrap";
@@ -14,7 +11,9 @@ import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
 
 import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
+
 import FormComp from "../components/FormComp";
+import ProductItem from "../components/ProductItem";
 
 export default function Products() {
   const [sortBy, setSortBy] = useState("");
@@ -82,7 +81,7 @@ export default function Products() {
           <Form.Select
             style={{ width: "8vw" }}
             aria-label="Default select example"
-            className="bg-info"
+            className="bg-info text-bg-light"
             onChange={formHandler}
           >
             <option value="Sort By">Sort By</option>

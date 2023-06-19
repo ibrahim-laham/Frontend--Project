@@ -1,5 +1,3 @@
-import { Product } from "../types/type";
-
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
 import { cartActions } from "../redux/slices/Cart";
@@ -9,6 +7,8 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 import { Link } from "react-router-dom";
+
+import { Product } from "../types/type";
 
 type Prop = {
   wish: Product;
@@ -28,7 +28,9 @@ export default function WishItem({ wish }: Prop) {
     cart.map((item) => {
       if (item.title === wish.title) {
         return dispatch(cartActions.totalCounter(-wish.price));
-      } else {return null}
+      } else {
+        return null;
+      }
     });
   }
 

@@ -2,9 +2,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
 import { cartActions } from "../redux/slices/Cart";
 
-import Stack from "react-bootstrap/Stack";
 import CartItem from "../components/CartItem";
-import { Button } from "react-bootstrap";
+
+import Stack from "react-bootstrap/Stack";
+import Button from "react-bootstrap/Button";
 
 export default function Cart() {
   const cart = useSelector((state: RootState) => state.cart.cart);

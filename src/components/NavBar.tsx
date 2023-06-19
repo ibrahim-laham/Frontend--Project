@@ -13,11 +13,11 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import Image from "react-bootstrap/Image";
 import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
+import { Col, Row, Stack } from "react-bootstrap";
 
 import { FaBars } from "react-icons/fa";
 
-import Logo from "../Assets/logo.png";
-import { Col, Row, Stack } from "react-bootstrap";
+import Logo from "../Assets/logo3_transparent.png";
 
 export default function NavBar() {
   const wishList = useSelector((state: RootState) => state.products.wishes);
@@ -39,10 +39,9 @@ export default function NavBar() {
       {[false].map((expand, index) => (
         <Navbar
           key={index}
-          bg="dark"
           expand={expand}
-          className="mb-3 text-warning"
-          style={{ fontWeight: "700" }}
+          className="mb-3 text-warning  "
+          style={{ fontWeight: "700", backgroundColor: "#060b1f" }}
         >
           <Container fluid className="justify-content-md-center w-25">
             <Link to="/">
@@ -88,12 +87,6 @@ export default function NavBar() {
                   {cart.length > 0 ? cart.length : null}
                 </Badge>
               </Nav>
-            </Link>
-            <Link
-              style={{ textDecoration: "none", color: "inherit" }}
-              to="/brand"
-            >
-              <Nav>Brand</Nav>
             </Link>
             <Link
               style={{ textDecoration: "none", color: "inherit" }}

@@ -1,5 +1,4 @@
 import "./App.css";
-import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 import Footer from "./components/Footer";
@@ -10,29 +9,34 @@ import Home from "./pages/Home";
 import Products from "./pages/Products";
 import WishList from "./pages/WishList";
 import Cart from "./pages/Cart";
-import Brand from "./pages/Brand";
 import AboutUs from "./pages/AboutUs";
 import ProductDetail from "./pages/ProductDetail";
 
-import { RootState } from "./redux/store";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 function App() {
-  const colorMode = useSelector((state: RootState) => state.colorMode.color);
-
   return (
-    <div className="App" data-bs-theme={colorMode}>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/wishlist" element={<WishList />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/brand" element={<Brand />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
-      </Routes>
-      <ToastComp />
-      <Footer />
+    <div className="App">
+      <Container fluid className="position-relative">
+        <Row className="sticky-top">
+          <NavBar />
+        </Row>
+        <Row className="my-5">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/wishlist" element={<WishList />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/aboutus" element={<AboutUs />} />
+            <Route path="/products/:id" element={<ProductDetail />} />
+          </Routes>
+          <ToastComp />
+        </Row>
+        <Row >
+          <Footer />
+        </Row>
+      </Container>
     </div>
   );
 }

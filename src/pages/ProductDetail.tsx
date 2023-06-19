@@ -1,8 +1,7 @@
 import { useParams, Link } from "react-router-dom";
-
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../redux/slices/Cart";
-import {RootState} from "../redux/store";
+import { RootState } from "../redux/store";
 
 import { useState, useEffect } from "react";
 
@@ -12,7 +11,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
 export default function ProductDetail() {
-  const cart = useSelector((state:RootState) => state.cart.cart)
+  const cart = useSelector((state: RootState) => state.cart.cart);
   const [detail, setDetail] = useState<Product>({
     id: 0,
     title: "",
@@ -48,7 +47,9 @@ export default function ProductDetail() {
     cart.map((item) => {
       if (item.title === detail.title) {
         return dispatch(cartActions.totalCounter(-detail.price));
-      } else {return null}
+      } else {
+        return null;
+      }
     });
   }
 

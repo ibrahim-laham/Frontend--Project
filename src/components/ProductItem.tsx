@@ -25,7 +25,7 @@ export default function ProductItem({ product }: Prop) {
   let wishColor = "";
   wishList?.map((wish) => {
     if (wish.id === product.id) {
-      return (wishColor = "gold");
+      return (wishColor = "warning");
     } else {
       return null;
     }
@@ -66,7 +66,7 @@ export default function ProductItem({ product }: Prop) {
 
   cart.map((item) => {
     if (item.title === product.title) {
-      return (cartColor = "gold");
+      return (cartColor = "warning");
     } else {
       return null;
     }
@@ -97,14 +97,14 @@ export default function ProductItem({ product }: Prop) {
               Price: {product.price} &#x20AC;
             </Card.Text>
             <MdFavorite
-              className="fs-3"
-              style={{ color: wishColor, cursor: "pointer" }}
+              className={`text-${wishColor} fs-3`}
+              style={{ cursor: "pointer" }}
               onClick={addFavorite}
             />
             <FaShoppingCart
               onClick={addToCartHandeler}
-              className="fs-3"
-              style={{ color: cartColor, cursor: "pointer" }}
+              className={`text-${cartColor} fs-3`}
+              style={{ cursor: "pointer" }}
             />
           </div>
         </Card.Body>
