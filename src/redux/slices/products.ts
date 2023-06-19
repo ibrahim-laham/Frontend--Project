@@ -7,6 +7,7 @@ type InitialState = {
   wishes: Product[];
   userInput: string;
   isLoading: boolean;
+  order: string;
 };
 
 const initialState: InitialState = {
@@ -14,6 +15,7 @@ const initialState: InitialState = {
   wishes: [],
   userInput: "",
   isLoading: true,
+  order: "Ascending",
 };
 
 export const productsSlice = createSlice({
@@ -23,6 +25,27 @@ export const productsSlice = createSlice({
     displayProducts: (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload;
     },
+    sortOrder: (state) => {
+      if (state.order === "Ascending") {
+        state.order = "Descending";
+      } else {
+        state.order = "Ascending";
+      }
+    },
+    sortProdcutsByPrice: (state) => {
+      if ((state.order === "Ascending")) {
+        state.products = state.products.sort((a, b) => a.price - b.price);
+      } else {
+        state.products = state.products.sort((a, b) => b.price - a.price);
+      }
+    },
+    sortProductsByName: (state) => {
+      if ((state.order === "Ascending")) {
+        state.products = state.products.sort((a,b) => a.title.localeCompare(b.title))
+      } else {
+        state.products = state.products.sort((a,b) => b.title.localeCompare(a.title))
+      }
+    },
     displayWishes: (state, action: PayloadAction<Product>) => {
       state.wishes.push(action.payload);
     },
@@ -31,12 +54,12 @@ export const productsSlice = createSlice({
         (favorite) => favorite.id !== action.payload.id
       );
     },
-    changeUserInput: (state, action: PayloadAction<string> ) => {
-      state.userInput= action.payload;
+    changeUserInput: (state, action: PayloadAction<string>) => {
+      state.userInput = action.payload;
     },
-    setIsLoading : (state) => {
+    setIsLoading: (state) => {
       state.isLoading = false;
-    }
+    },
   },
 });
 

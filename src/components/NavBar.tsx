@@ -17,7 +17,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { FaBars } from "react-icons/fa";
 
 import Logo from "../Assets/logo.png";
-import { Stack } from "react-bootstrap";
+import { Col, Row, Stack } from "react-bootstrap";
 
 export default function NavBar() {
   const wishList = useSelector((state: RootState) => state.products.wishes);
@@ -27,6 +27,13 @@ export default function NavBar() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  function changeColorHandler() {
+    if (document.documentElement.getAttribute("data-bs-theme") === "dark") {
+      document.documentElement.setAttribute("data-bs-theme", "light");
+    } else {
+      document.documentElement.setAttribute("data-bs-theme", "dark");
+    }
+  }
   return (
     <>
       {[false].map((expand, index) => (
@@ -99,9 +106,22 @@ export default function NavBar() {
             </Button>
             <Offcanvas show={show} onHide={handleClose} placement={"end"}>
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  WishList
-                </Offcanvas.Title>
+                <Container fluid>
+                  <Row>
+                    <Col>
+                      <Offcanvas.Title
+                        id={`offcanvasNavbarLabel-expand-${expand}`}
+                      >
+                        WishList
+                      </Offcanvas.Title>
+                    </Col>
+                    <Col>
+                      <Button onClick={changeColorHandler} variant="primary">
+                        Change Color
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <ListGroup>

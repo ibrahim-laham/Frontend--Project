@@ -12,7 +12,7 @@ const initialState: InitialState = {
 };
 
 export const toastSlice = createSlice({
-  name: "products",
+  name: "toast",
   initialState,
   reducers: {
     add: (state, action: PayloadAction<boolean>) => {
