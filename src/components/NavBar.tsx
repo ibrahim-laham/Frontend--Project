@@ -45,7 +45,7 @@ export default function NavBar() {
         >
           <Container fluid className="justify-content-md-center w-25">
             <Link to="/">
-              <Navbar.Brand href="#">
+              <Navbar.Brand>
                 <Image className="w-25" src={Logo} roundedCircle></Image>
               </Navbar.Brand>
             </Link>
