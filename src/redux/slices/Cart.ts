@@ -36,6 +36,20 @@ export const cartSlice = createSlice({
     resetCart: (state) => {
       state.cart = [];
     },
+    increaseQuantity: (state,  action: PayloadAction<CartProduct>) => {
+      state.cart.map(item => {
+        if (item.title === action.payload.title) {
+         return item.quantity += 1;
+        } else {return null}
+      })
+    },
+    decreaseQuantity: (state,action: PayloadAction<CartProduct>) => {
+      state.cart.map(item => {
+        if (item.title === action.payload.title) {
+         return item.quantity -= 1;
+        } else {return null}
+      })
+    },
     totalCounter: (state, action: PayloadAction<number>) => {
       state.total += action.payload;
     },

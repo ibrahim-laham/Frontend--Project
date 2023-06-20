@@ -28,6 +28,7 @@ export default function ProductDetail() {
       cartActions.addToCart({
         title: detail?.title,
         price: detail?.price,
+        quantity: 1,
       })
     );
     dispatch(cartActions.totalCounter(detail.price));

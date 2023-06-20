@@ -50,6 +50,7 @@ export default function ProductItem({ product }: Prop) {
       cartActions.addToCart({
         title: product.title,
         price: product.price,
+        quantity: 1,
       })
     );
     dispatch(cartActions.totalCounter(product.price));

@@ -22,6 +22,7 @@ export default function WishItem({ wish }: Prop) {
       cartActions.addToCart({
         title: wish.title,
         price: wish.price,
+        quantity: 1,
       })
     );
     dispatch(cartActions.totalCounter(wish.price));

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { useDispatch } from "react-redux";
 import { cartActions } from "../redux/slices/Cart";
 
@@ -14,24 +12,21 @@ type Prop = {
 };
 
 export default function CartItem({ item }: Prop) {
-  const [value, setValue] = useState(1);
   const dispatch = useDispatch();
   function addHandler() {
-    setValue(value + 1);
+    dispatch(cartActions.increaseQuantity(item));
     dispatch(cartActions.totalCounter(item.price));
   }
   function substractHandler() {
-    if (value > 0) {
-      setValue(value - 1);
+    if (item.quantity > 0) {
+      dispatch(cartActions.decreaseQuantity(item));
       dispatch(cartActions.totalCounter(-item.price));
-    } else {
-      setValue(0);
     }
   }
 
   function deletItemHandler() {
     dispatch(cartActions.deleteFromCart(item));
-    dispatch(cartActions.totalCounter(-item.price * value));
+    dispatch(cartActions.totalCounter(-item.price * item.quantity));
   }
 
   return (
@@ -44,7 +39,7 @@ export default function CartItem({ item }: Prop) {
         <div className="w-25 text-center">{item.price}</div>
         <Stack direction="horizontal" className="w-25 justify-content-between">
           <Button onClick={addHandler}>+</Button>
-          <div>{value} </div>
+          <div>{item.quantity} </div>
           <Button onClick={substractHandler}>-</Button>
         </Stack>
         <Button onClick={deletItemHandler} variant="danger">
