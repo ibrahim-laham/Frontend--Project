@@ -7,6 +7,8 @@ import CartItem from "../components/CartItem";
 import Stack from "react-bootstrap/Stack";
 import Button from "react-bootstrap/Button";
 
+
+
 export default function Cart() {
   const cart = useSelector((state: RootState) => state.cart.cart);
   const total = useSelector((state: RootState) => state.cart.total);

@@ -11,7 +11,6 @@ export default function Home() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        /* height: "60vh", */
         marginBottom: "5vh",
       }}
     >

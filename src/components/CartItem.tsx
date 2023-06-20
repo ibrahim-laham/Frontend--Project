@@ -7,10 +7,10 @@ import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
 import Button from "react-bootstrap/Button";
 
-import { AddCart } from "../types/type";
+import { CartProduct } from "../types/type";
 
 type Prop = {
-  item: AddCart;
+  item: CartProduct;
 };
 
 export default function CartItem({ item }: Prop) {

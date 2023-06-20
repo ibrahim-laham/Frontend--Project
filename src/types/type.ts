@@ -16,4 +16,4 @@ export type fetchedData = {
   limit: number
 }
 
-export type AddCart = { title: string; price: number; };
+export type CartProduct = { title: string; price: number; };

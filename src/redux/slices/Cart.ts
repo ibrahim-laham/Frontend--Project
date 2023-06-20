@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AddCart } from "../../types/type";
+import { CartProduct } from "../../types/type";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 type InitialState = {
-  cart: AddCart[];
+  cart: CartProduct[];
   total: number;
 };
 
@@ -16,7 +16,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<AddCart>) => {
+    addToCart: (state, action: PayloadAction<CartProduct>) => {
       state.cart.map((item) => {
         if (item.title === action.payload.title) {
           return (state.cart = state.cart.filter(
@@ -28,7 +28,7 @@ export const cartSlice = createSlice({
       });
       state.cart.push(action.payload);
     },
-    deleteFromCart: (state, action: PayloadAction<AddCart>) => {
+    deleteFromCart: (state, action: PayloadAction<CartProduct>) => {
       state.cart = state.cart.filter(
         (item) => item.title !== action.payload.title
       );
