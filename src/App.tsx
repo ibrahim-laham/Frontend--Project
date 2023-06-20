@@ -17,7 +17,7 @@ import Row from "react-bootstrap/Row";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" >
       <Container fluid className="position-relative">
         <Row className="sticky-top">
           <NavBar />

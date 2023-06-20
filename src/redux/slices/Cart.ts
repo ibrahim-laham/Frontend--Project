@@ -2,19 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import { CartProduct } from "../../types/type";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-type InitialState = {
+type CartState = {
   cart: CartProduct[];
   total: number;
 };
 
-const initialState: InitialState = {
+const cartState: CartState = {
   cart: [],
   total: 0,
 };
 
 export const cartSlice = createSlice({
   name: "cart",
-  initialState,
+  initialState: cartState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartProduct>) => {
       state.cart.map((item) => {

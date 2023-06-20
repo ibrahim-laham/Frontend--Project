@@ -10,7 +10,6 @@ export default function FormComp() {
     const result = e.target.value;
     dispatch(productsActions.changeUserInput(result));
 
-    return result;
   }
   return (
     <div>

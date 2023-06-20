@@ -91,7 +91,7 @@ export default function Products() {
 
           <Button variant="info" onClick={sortOrderHandler} className="h-50">
             Sort Order{" "}
-            {sortOrder === "Ascending" ? (
+            {sortOrder === "ascending" ? (
               <BiUpArrowAlt className="fs-5" />
             ) : (
               <BiDownArrowAlt className="fs-5" />

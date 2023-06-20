@@ -1,26 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-type InitialState = {
+type ToastState = {
   addProduct: boolean;
   removeProduct: boolean;
 };
 
-const initialState: InitialState = {
+const toastState: ToastState = {
   addProduct: false,
   removeProduct: false,
 };
 
 export const toastSlice = createSlice({
   name: "toast",
-  initialState,
+  initialState: toastState,
   reducers: {
     add: (state, action: PayloadAction<boolean>) => {
       state.addProduct = action.payload;
     },
     remove: (state, action: PayloadAction<boolean>) => {
       state.removeProduct = action.payload;
-    }
+    },
   },
 });
 

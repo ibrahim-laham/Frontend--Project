@@ -119,7 +119,7 @@ export default function NavBar() {
               <Offcanvas.Body>
                 <ListGroup>
                   {wishList.map((item) => (
-                    <ListGroup.Item variant="info" className="my-1">
+                    <ListGroup.Item variant="info" className="my-1" key={item.id}>
                       <Stack direction="horizontal">
                         <div
                           className="w-25"

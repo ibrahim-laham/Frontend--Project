@@ -1,40 +1,27 @@
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../redux/slices/Cart";
-import { RootState } from "../redux/store";
+import { RootState, AppDispatch } from "../redux/store";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-import { Product } from "../types/type";
+import { getProductDetail } from "../redux/thunk/productDetail";
 
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
 export default function ProductDetail() {
   const cart = useSelector((state: RootState) => state.cart.cart);
-  const [detail, setDetail] = useState<Product>({
-    id: 0,
-    title: "",
-    description: "",
-    price: 0,
-    rating: 0,
-    category: "",
-    thumbnail: "",
-    images: [""],
-  });
+  const detail = useSelector((state: RootState) => state.productDetail.detail);
+
   const result = useParams();
   const url = `https://dummyjson.com/products/${result.id}`;
   const dispatch = useDispatch();
+  const appDispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    function getProductDetail() {
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => setDetail(data))
-        .catch((error) => console.log(error));
-    }
-    getProductDetail();
-  }, [url]);
+    appDispatch(getProductDetail(url));
+  }, [appDispatch, url]);
 
   function addToCartHandeler() {
     dispatch(

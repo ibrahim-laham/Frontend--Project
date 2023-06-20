@@ -31,7 +31,7 @@ export default function CartItem({ item }: Prop) {
 
   function deletItemHandler() {
     dispatch(cartActions.deleteFromCart(item));
-    dispatch(cartActions.totalCounter(-item.price));
+    dispatch(cartActions.totalCounter(-item.price * value));
   }
 
   return (
