@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
 import Footer from "./components/Footer";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/NavBar/NavBar";
 import ToastComp from "./components/Toast";
 
 import Home from "./pages/Home";

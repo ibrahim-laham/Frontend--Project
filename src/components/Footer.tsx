@@ -15,7 +15,7 @@ export default function Footer() {
     <Stack
       style={{ backgroundColor: "#060b1f" }}
       gap={2}
-      className="mx-auto text-warning py-5 position-absolute bottom-0"
+      className="text-warning p-5 h-25 position-relative bottom-0"
     >
       <div className="d-flex flex-row justify-content-center gap-5 fs-1 ">
         <BsFacebook />
