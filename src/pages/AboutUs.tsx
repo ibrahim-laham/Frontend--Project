@@ -6,7 +6,7 @@ export default function AboutUs() {
         customers around the world to express themselves through fashion and<br/>
         design, and to choose a more sustainable lifestyle. We create value for<br/>
         people and society in general by delivering our customer offering and by<br/>
-        developing with a focus on sustainable and profitable growth.
+        developing with a focus on sustainable and profitable growths.
       </p>
     </div>
   );
